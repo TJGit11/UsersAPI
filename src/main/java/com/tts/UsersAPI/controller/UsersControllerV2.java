@@ -34,13 +34,13 @@ public class UsersControllerV2 {
         if(state != null) {
             usersFound = userRepository.findByState(state);
             if(!usersFound.isEmpty()){
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             return new ResponseEntity<>(usersFound, HttpStatus.OK);
         }
         usersFound = (List<UserV1>) userRepository.findAll();
         if(usersFound.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(usersFound, HttpStatus.OK);
     }
